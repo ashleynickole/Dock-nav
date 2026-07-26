@@ -31,117 +31,96 @@
     padding: 9px 18px;
     border-radius: 999px;
     background:
-      linear-gradient(180deg, rgba(255,255,255,.20) 0%, rgba(255,255,255,.09) 34%, rgba(255,255,255,.045) 68%, rgba(255,255,255,.025) 100%),
-      rgba(18,18,18,.32);
-    border: 1px solid rgba(255,255,255,.34);
+      linear-gradient(180deg,
+        rgba(255,255,255,.22) 0%,
+        rgba(255,255,255,.10) 18%,
+        rgba(255,255,255,.045) 54%,
+        rgba(255,255,255,.025) 100%
+      ),
+      rgba(58,58,58,.34);
+    border: 1px solid rgba(255,255,255,.16);
     box-shadow:
-      0 4px 10px rgba(0,0,0,.12),
-      0 1px 3px rgba(0,0,0,.08),
-      inset 0 1px 0 rgba(255,255,255,.44),
-      inset 0 -1px 0 rgba(0,0,0,.16),
-      inset 1px 0 0 rgba(255,255,255,.10),
-      inset -1px 0 0 rgba(255,255,255,.08);
+      0 7px 18px rgba(0,0,0,.16),
+      0 2px 5px rgba(0,0,0,.10),
+      inset 0 1px 0 rgba(255,255,255,.26),
+      inset 0 -1px 0 rgba(0,0,0,.10);
     animation: dockIn .65s cubic-bezier(.2,.8,.2,1) both;
   }
   .dock::before {
     content: "";
     position: absolute;
-    inset: 1px;
+    inset: 0;
     z-index: -1;
     border-radius: inherit;
-    backdrop-filter: blur(22px) saturate(1.35) brightness(.96) contrast(1.04);
-    -webkit-backdrop-filter: blur(22px) saturate(1.35) brightness(.96) contrast(1.04);
+    backdrop-filter: blur(20px) saturate(1.2) brightness(.96);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2) brightness(.96);
     background:
-      radial-gradient(110% 80% at 16% -10%, rgba(255,255,255,.20), transparent 46%),
-      radial-gradient(95% 75% at 84% 118%, rgba(255,255,255,.055), transparent 52%),
-      linear-gradient(90deg, rgba(255,255,255,.018), rgba(255,255,255,.055) 48%, rgba(255,255,255,.015));
+      radial-gradient(75% 140% at 18% -22%, rgba(255,255,255,.28), transparent 48%),
+      radial-gradient(55% 120% at 78% 112%, rgba(255,255,255,.08), transparent 56%),
+      linear-gradient(180deg,
+        rgba(255,255,255,.08) 0%,
+        rgba(255,255,255,.025) 28%,
+        rgba(255,255,255,0) 56%
+      );
   }
 
 
 
-  .dock .rim {
-    position: absolute;
-    inset: -1px;
-    z-index: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    border: 1px solid rgba(255,255,255,.16);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.35),
-      inset 0 -1px 0 rgba(0,0,0,.18),
-      0 0 0 1px rgba(0,0,0,.08);
-    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.9) 55%, rgba(0,0,0,.7) 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.9) 55%, rgba(0,0,0,.7) 100%);
-  }
 
   .dock > .texture {
     position: absolute;
     inset: 1px;
-    z-index: -1;
+    z-index: 0;
     border-radius: inherit;
     pointer-events: none;
-    opacity: .34;
+    overflow: hidden;
+  }
+
+  .dock > .texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: .24;
     background-image:
-      repeating-linear-gradient(
-        112deg,
-        rgba(255,255,255,.018) 0,
-        rgba(255,255,255,.018) 1px,
-        transparent 1px,
-        transparent 4px
-      ),
-      linear-gradient(
-        180deg,
-        rgba(255,255,255,.11) 0%,
-        rgba(255,255,255,.02) 18%,
-        transparent 42%
-      );
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,.10) 0 1px, transparent 1.4px),
+      radial-gradient(circle at 70% 65%, rgba(255,255,255,.07) 0 1px, transparent 1.5px);
+    background-size: 7px 7px, 11px 11px;
     mix-blend-mode: screen;
+  }
+
+  .dock > .texture::after {
+    content: "";
+    position: absolute;
+    top: -34%;
+    left: 8%;
+    width: 58%;
+    height: 72%;
+    border-radius: 50%;
+    transform: rotate(-8deg);
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,.18) 0%,
+      rgba(255,255,255,.07) 32%,
+      rgba(255,255,255,0) 72%
+    );
+    filter: blur(8px);
+    opacity: .72;
   }
 
   .dock::after {
     content: "";
     position: absolute;
-    left: 12%;
-    right: 12%;
-    bottom: -5px;
-    height: 10px;
+    left: 10%;
+    right: 10%;
+    bottom: -7px;
+    height: 12px;
     z-index: -2;
     border-radius: 999px;
-    background: rgba(0,0,0,.12);
-    filter: blur(5px);
-    opacity: .42;
+    background: rgba(0,0,0,.18);
+    filter: blur(7px);
+    opacity: .52;
     pointer-events: none;
-  }
-  .tab::before {
-    content: "";
-    position: absolute;
-    inset: -4px -3px;
-    z-index: -1;
-    border-radius: 999px;
-    background: transparent;
-    border: 1px solid transparent;
-    box-shadow: none;
-    opacity: 0;
-    transform: scale(.92);
-    transition:
-      opacity .22s ease,
-      transform .32s cubic-bezier(.22,1,.36,1),
-      background .22s ease,
-      border-color .22s ease;
-    pointer-events: none;
-  }
-
-  .tab.active::before {
-    opacity: 1;
-    transform: scale(1);
-    background: rgba(255,255,255,.11);
-    border-color: rgba(255,255,255,.10);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
-  }
-
-  .tab[data-page="home"]::before,
-  .tab[data-page="home"].active::before {
-    display: none;
   }
 
   .tab:first-of-type::before {
@@ -170,8 +149,7 @@
   }
   .tab:active { transform: scale(.85); }
   .tab[data-page="home"]:active { transform: scale(.92); }
-  .tab:hover, .tab:focus-visible { color: rgba(255,255,255,.74); }
-  .tab.active { color: #fff; }
+  .tab:hover, .tab:focus-visible { color: #fff; }
   .inner {
     display: flex;
     flex-direction: column;
@@ -185,7 +163,10 @@
     place-items: center;
     transition: transform .28s cubic-bezier(.2,.9,.2,1);
   }
-  .tab.active .icon-wrap { transform: translateY(-1px) scale(1.15); }
+  .tab:hover .icon-wrap,
+  .tab:focus-visible .icon-wrap {
+    transform: translateY(-1px) scale(1.08);
+  }
 
   .tab img.icon {
     width: 24px;
@@ -205,8 +186,7 @@
   }
 
   .tab[data-page="home"]:hover img.icon,
-  .tab[data-page="home"]:focus-visible img.icon,
-  .tab[data-page="home"].active img.icon {
+  .tab[data-page="home"]:focus-visible img.icon {
     opacity: 1;
   }
   .icon {
@@ -217,8 +197,7 @@
     opacity: .48;
     transition: opacity .18s ease;
   }
-  .tab:hover .icon, .tab:focus-visible .icon { opacity: .74; }
-  .tab.active .icon { opacity: 1; }
+  .tab:hover .icon, .tab:focus-visible .icon { opacity: 1; }
   svg.icon {
     fill: none;
     stroke: currentColor;
@@ -244,7 +223,6 @@
 </head>
 <body>
 <nav class="dock" aria-label="Missile Studios navigation">
-  <span class="rim" aria-hidden="true"></span>
   <span class="texture" aria-hidden="true"></span>
   <a class="tab" data-page="home" href="https://www.missilephoto.com" target="_top" aria-label="Home">
     <span class="inner">
@@ -316,49 +294,15 @@
 (() => {
   const tabs = [...document.querySelectorAll('.tab')];
 
-  function detectPage() {
-    const values = [];
-    try { values.push(window.top.location.href); } catch (e) {}
-    if (document.referrer) values.push(document.referrer);
-    values.push(window.location.href);
-
-    const forced = new URLSearchParams(window.location.search).get('page');
-    if (forced) values.unshift(forced);
-
-    const source = values.join(' ').toLowerCase();
-    if (source.includes('/book') || source.includes('page=book')) return 'book';
-    if (source.includes('/info') || source.includes('page=info')) return 'info';
-    if (source.includes('/portfolio') || source.includes('page=portfolio')) return 'portfolio';
-    if (source.includes('/services') || source.includes('page=services')) return 'services';
-    if (source.includes('/about') || source.includes('page=about') || source.includes('page=studio')) return 'about';
-    return 'home';
-  }
-
-  function activate(page) {
-    const active = tabs.find(tab => tab.dataset.page === page) || tabs[0];
+  function clearActiveState() {
     tabs.forEach(tab => {
-      const isHome = tab.dataset.page === 'home';
-      const on = tab === active && !isHome;
-      tab.classList.toggle('active', on);
-      if (on) tab.setAttribute('aria-current', 'page');
-      else tab.removeAttribute('aria-current');
+      tab.classList.remove('active');
+      tab.removeAttribute('aria-current');
     });
   }
 
-  tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.page)));
-  window.addEventListener('resize', () => activate(document.querySelector('.tab.active')?.dataset.page || detectPage()));
-  window.addEventListener('message', event => {
-    if (typeof event.data !== 'string') return;
-    const v = event.data.toLowerCase();
-    if (v.includes('book')) activate('book');
-    else if (v.includes('info')) activate('info');
-    else if (v.includes('portfolio')) activate('portfolio');
-    else if (v.includes('services')) activate('services');
-    else if (v.includes('about') || v.includes('studio')) activate('about');
-    else if (v.includes('home')) activate('home');
-  });
-
-  requestAnimationFrame(() => activate(detectPage()));
+  tabs.forEach(tab => tab.addEventListener('click', clearActiveState));
+  requestAnimationFrame(clearActiveState);
 })();
 </script>
 </body>
